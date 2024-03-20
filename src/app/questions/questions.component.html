@@ -1,0 +1,17 @@
+<div *ngIf="indexQuestion < 6; else bloccoElse" id="quiz">
+    <div id="question">
+      <progress [value]="remainingTime" [max]="timer"></progress>
+      <h2>{{angularQuestions[indexQuestion].question}}</h2>
+      <div id="answers">
+        <div class="answer" *ngFor="let option of angularQuestions[indexQuestion].options; let i = index">
+          <button (click)="nextQuestionAnswered(option, indexQuestion, i)">
+            {{option}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #bloccoElse>
+    <app-summary  [answers]="answers" [answersPercents]="answersPercents" (sendEvent)="eventEmit($event)"></app-summary>
+  </ng-template>
+

@@ -1,0 +1,34 @@
+<div id="summary">
+    <h2>QUIZ COMPLETED!</h2>
+    <div id="summary-stats">
+        <div class="cont-stats">
+            <p class="number">{{answersPercents[0]}}%</p>
+            <p class="text user-answer skipped">skipped</p>
+        </div>
+        <div class="cont-stats">
+            <p class="number">{{answersPercents[1]}}%</p>
+            <p class="text user-answer  correct">correct</p>
+        </div>
+        <div class="cont-stats">
+            <p class="number">{{answersPercents[2]}}%</p>
+            <p class="text user-answer wrong">wrong</p>
+        </div>
+    </div>
+    <div *ngIf="answersPercents[1] > 50; else quizFailed">
+        <p class="quiz-recap user-answer correct">QUIZ PASSED !</p>
+    </div>
+    <ng-template #quizFailed>
+        <p class="quiz-recap user-answer wrong">QUIZ FAILED !</p>
+    </ng-template>
+    <ol>
+          <li *ngFor="let answer of answers">
+            <h3>{{answer.index + 1}}</h3>
+            <p class="question">{{answer.text}}</p>
+            <p class="user-answer " [ngClass]="{'correct': answer.correction === 'correct', 'wrong': answer.correction === 'wrong', 'skipped': answer.correction === 'skipped'}">
+                {{ answer.correction }}
+            </p>
+          </li>
+    </ol>
+    <button class="button-restart" (click)="bubbleClick()">Back to start</button>
+</div>
+

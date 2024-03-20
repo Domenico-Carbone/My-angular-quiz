@@ -1,0 +1,17 @@
+<div class="app-container">
+    <div *ngIf="!buttonStartIsClicked || button; else bloccoElse" class="start-container">
+        <h2>ARE YOU READY TO START?</h2>
+        <p>you will have to answer seven questions about Angular and there will be three options</p>
+        <div class="options">
+            <p>Skipped</p>
+            <p>Correct</p>
+            <p>Wrong</p>
+        </div>
+        <button class="button-start" (click)="setButtonClick()">Start</button>
+    </div>
+    <ng-template #bloccoElse>
+        <div class="questions-wrapper">
+            <app-domande (sendEvent)="handleEvent($event)"></app-domande>
+        </div>
+    </ng-template>
+</div>
